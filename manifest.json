@@ -12,9 +12,22 @@
         "service_worker":"background.js"
     },
 
-    "permissions":["storage", "declarativeContent", "activeTab", "scripting"],
+    "content_scripts": [
+        {
+          "matches": ["http://*/*", "https://*/*"],
+          "js": ["contentscript.js"]
+        }
+      ],
+
+
+
+    "permissions":["storage", "declarativeContent", "activeTab", "scripting","tabs","webRequest"],
     "action":{
         "default_popup":"popup.html"
-    }
+    },
+
+    "host_permissions": [
+        "*://*.google.com/"
+    ]
     
 }

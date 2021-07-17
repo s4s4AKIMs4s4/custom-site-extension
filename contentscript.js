@@ -1,40 +1,16 @@
-let state = false
+chrome.runtime.onMessage.addListener(
+    async function(request, sender, sendResponse) {
+      // listen for messages sent from background.js
+      if (request.message === 'hello!') {
+          setPageBackgroundColor()
+        console.log(request.tabId) // new url is now in content scripts!
+    //     chrome.scripting.executeScript({
+    //     target:{tabId:tabId.id},
+    //     function: setPageBackgroundColor,
+    // })    
 
-
-chrome.runtime.onInstalled.addListener(()=>{
-    chrome.storage.sync.set({color});
-    chrome.storage.sync.set({text});
-    console.log('Default background color set to %cgreen',`color:${color}`)
-    
-})
-
-chrome.tabs.onUpdated.addListener(
-    function(tabId, changeInfo, tab) {
-      // read changeInfo data
-        state = !state
-
-        // chrome.scripting.executeScript({
-        //     target:{tabId:tabId},
-        //     function: setPageBackgroundColor,
-        // })  
-
-      chrome.tabs.sendMessage( tabId, {
-        message: 'hello!',
-        url: changeInfo,
-        state: state,
-        tabId: tabId
-      })
-      
-      
-    }
-  );
-chrome.tabs.onActivated.addListener(function(activeInfo) {
-    console.log(activeInfo)
-    // how to fetch tab url using activeInfo.tabid
-    // chrome.tabs.get(activeInfo.tabId, function(tab){
-    //    console.log(tab.url);
-    // });
-  }); 
+      }
+  });
 
 
 
@@ -65,3 +41,10 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
         // })
     })
 } 
+
+
+
+
+
+
+
