@@ -1,0 +1,23 @@
+#1
+menu
+    menu__item menu__item_domen_youtube
+    menu__item menu__item_domen_google
+#2
+menu
+    menu__item menu__item_domen_youtube menu__item_area_links
+    menu__item menu__item_domen_youtube menu__item_area_text
+    menu__item menu__item_domen_youtube menu__item_area_background
+
+    menu__item menu__item_domen_google menu__item_area_links
+    menu__item menu__item_domen_google menu__item_area_text
+    menu__item menu__item_domen_google menu__item_area_background
+
+#3
+    menu__item menu__youtube_make_palletre
+    
+menu    
+    menu__google_make_palletre
+#3
+menu
+    menu__palletre_size_fullColors
+    menu__palletre_size_someColors
