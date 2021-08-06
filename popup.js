@@ -269,20 +269,11 @@ const changeColor = (state) =>{
 
 
 
-
+ let flagApply = false
 //closes for menu event - click
 const menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
-    
     index = state.index
-    
-
     const button = event.target
-    // if(event.target.tagName !== 'BUTTON'){
-    //     state = sesionBreadCrumbs(index)
-    //     return
-    // }
-
-
     dict = {
         1:changeDomen,
         2:changeArea,
@@ -293,11 +284,17 @@ const menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
         deleteLiElement()
         stateAction =  dict[index](stateAction, button)
         state = sesionBreadCrumbs(index+1)
+        flagApply = false 
     }
     else{
         // state = sesionBreadCrumbs(index)
         stateAction =  dict[index](stateAction)
+        
+        flagApply = true 
+        chrome.runtime.sendMessage({flagApply: flagApply, stateAction: stateAction})
+        
     }
+    console.log(stateAction)
 }
 menuEvent = menuHandler()
 

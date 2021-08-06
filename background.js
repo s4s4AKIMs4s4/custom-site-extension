@@ -1,67 +1,151 @@
-let state = false
+let flagApply = false
+let stateColor = null
+
+
+
 
 
 chrome.runtime.onInstalled.addListener(()=>{
-    chrome.storage.sync.set({color});
-    chrome.storage.sync.set({text});
-    console.log('Default background color set to %cgreen',`color:${color}`)
-    
+ 
 })
 
 chrome.tabs.onUpdated.addListener(
     function(tabId, changeInfo, tab) {
-      // read changeInfo data
-        state = !state
-
-        // chrome.scripting.executeScript({
-        //     target:{tabId:tabId},
-        //     function: setPageBackgroundColor,
-        // })  
+     
+     chrome.storage.sync.get(['full'], function(result) {
+      console.log("background:")
+      console.log(result.full)
 
       chrome.tabs.sendMessage( tabId, {
         message: 'hello!',
         url: changeInfo,
-        state: state,
+        state: result.full,
         tabId: tabId
       })
       
-      
+    });
+
+    
+
+
+
     }
   );
 chrome.tabs.onActivated.addListener(function(activeInfo) {
     console.log(activeInfo)
-    // how to fetch tab url using activeInfo.tabid
-    // chrome.tabs.get(activeInfo.tabId, function(tab){
-    //    console.log(tab.url);
-    // });
+
   }); 
+  
+  
+  const logging = (val,describe) => {
+    console.log(describe)
+    console.log(val)
+  }
+  
+   async function getFromStorageandSendToContent (stateAction) {
+
+    chrome.storage.sync.get(['full'], function(result) {
+
+
+      let state = {}
+      const domen = stateAction.domen
+      const area = stateAction.area
+      stateColor = {
+        pallet:stateAction.pallet,
+        color:stateAction.color,
+      }
+      
+
+
+
+      logging(result.full,'from getObjectFromStorage')
+      if(result.full === undefined){ 
+        console.log('hi')
+        state = {
+          full: {
+            google:{},
+            youtube:{},
+          } 
+        } 
+
+
+
+          
+      }
+
+      else {
+        state = result
+      }
+      
+
+
+      logging(state,'state object')
+      state['full'][domen][area] = stateColor
+      logging(state,'state after update')    
+
+      
+      chrome.storage.sync.set(state, function() {
+        console.log('Object is set ');
+      });  
+      
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+        chrome.tabs.sendMessage(tabs[0].id, {state: state.full});
+      });  
+      })
+    
+  }
 
 
 
 
-  function setPageBackgroundColor(){
-    chrome.storage.sync.get('color',({color})=>{
-        // document.body.style.backgroundColor = color
-        //:not(.fWhgmd),
-        //RNNXgb - border of input
-        const styleSheets = Array.from(document.styleSheets).filter(
-            (styleSheet) => !styleSheet.href || styleSheet.href.startsWith(window.location.origin)
-          );
-        
-        console.log(styleSheets)
-        let elements = document.querySelectorAll( ':not(.c7cjWc)');
-        let borderColor = document.querySelectorAll('.RNNXgb')
-        let tags = document.querySelectorAll('a')  
-        
-        tags.forEach((val,idx)=>{
-            val.style.color = 'red'
-        })
-        //color of background
-        // elements.forEach((val,idx)=>{
-        //     // tag.style.color = 'red'
-        //     borderColor.style.borderColor = 'red'
 
-        //     // val.style.backgroundColor = color
-        // })
-    })
-} 
+
+
+
+
+  
+
+  chrome.runtime.onMessage.addListener( function(request,sender,sendResponse)
+  {
+    
+    
+    
+   
+    logging(stateColor,'stateColor inside background.js')
+    getFromStorageandSendToContent(request.stateAction)
+
+    
+    
+    
+  })
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

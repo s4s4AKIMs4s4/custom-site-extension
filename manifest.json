@@ -21,7 +21,7 @@
 
 
 
-    "permissions":["storage", "declarativeContent", "activeTab", "scripting","tabs","webRequest"],
+    "permissions":["storage","declarativeContent", "activeTab", "scripting","tabs","webRequest"],
     "action":{
         "default_popup":"popup.html"
     },
