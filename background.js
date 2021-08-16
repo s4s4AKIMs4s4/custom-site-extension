@@ -50,6 +50,7 @@ chrome.tabs.onActivated.addListener(function(activeInfo) {
       let state = {}
       const domen = stateAction.domen
       const area = stateAction.area
+      
       stateColor = {
         pallet:stateAction.pallet,
         color:stateAction.color,

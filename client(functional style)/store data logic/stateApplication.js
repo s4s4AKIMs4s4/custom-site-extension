@@ -12,8 +12,11 @@ const changePallet = (state, element) => {
     return {...state, pallet: element.getAttribute("data-pallet")} 
 }
 
-const changeColor = (state) =>{
-    return {...state, color:selectedColor}
+const changeColor = (state,element) =>{
+    if(element.getAttribute("data-pallet") === 'n')
+        return {...state, color:selectedColor}
+    else
+        return {...state, pallet: element.getAttribute("data-pallet")}   
 }
 
 
@@ -44,7 +47,7 @@ let menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
     }
     else{
         // state = sesionBreadCrumbs(index)
-        stateAction =  dict[index](stateAction)
+        stateAction =  dict[index](stateAction, button)
         
         flagApply = true 
         chrome.runtime.sendMessage({flagApply: flagApply, stateAction: stateAction})
@@ -59,3 +62,5 @@ menu.addEventListener('click',menuEvent(page))
 
 if(selectdButtonApply)
     selectdButtonApply.addEventListener('click',menuEvent(page))
+if(buttonResetRef)
+    buttonResetRef.addEventListener('click',menuEvent(page))

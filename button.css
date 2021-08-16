@@ -21,6 +21,12 @@ button.current {
     /* justify-content:space-between ; */
 }
 
+
+.text{
+  position: absolute;
+  left:0px;
+
+}
 .menu__item{
     flex-grow: 1;
     flex-wrap: wrap;

@@ -165,7 +165,12 @@ class Director{
 
   performAllArea(areaobj){
     for(const  [area, value] of Object.entries(areaobj) ){
+      console.log(area)
       console.log(value)
+      if(value.pallet === 'reset'){
+        console.log('inside value pallet')
+        continue
+      }
       this.performArea(area, value.color )
     }
 
