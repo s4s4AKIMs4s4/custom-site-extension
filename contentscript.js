@@ -13,6 +13,14 @@ const template = (selector, color) => {
 
 }
 
+const templateBorderColor = (selector, color) => {
+  const allEments = document.querySelectorAll(selector)
+  allEments.forEach((val,idx)=>{
+                      val.style.borderColor = `rgb(${color.r}, ${color.g}, ${color.b})`
+                    })
+
+}
+
 class Google{
  
   performText(color){
@@ -27,17 +35,112 @@ class Google{
     template('a',color)
   }
 
+  performInput(color){
+    template('#container',color)
+    template('#search-icon-legacy',color)
+  }
+
 }
+
+
+
+
+
+
+
 class Youtube{
+  _scrollUpadtaAlgoritm= null
+
+  constructor(){
+    this._scrollUpadtaAlgoritm = new ScrollUpadtaAlgoritm
+  }
+  
   performText(color){
-    // document.querySelectorAll('span:not(#video-title)') .forEach((val,indx)=>{val.style.color = 'red'})
-    template('span:not(#video-title)', color)
+    this._scrollUpadtaAlgoritm.setText(color)
+    this._scrollUpadtaAlgoritm.infinityScrollColorUpdate()
+    
+    
+  }
+  
+  performLinks(color){
+    this._scrollUpadtaAlgoritm.setLink(color)
+    this._scrollUpadtaAlgoritm.infinityScrollColorUpdate()
 
   }
-  performLinks(color){
-    template('a',color)
+
+  performInput(color){
+    console.log('hello ia ma in change input function')
+    console.log(color)
+    templateBorderColor('#container',color)
+    templateBorderColor('#search-icon-legacy',color)
+  }
+
+}
+
+
+
+
+class ScrollUpadtaAlgoritm  {
+  _text = false
+  _link = false
+  _numberOfPagePassed = 1 
+
+  paintText(){
+    template('span', this._text)
+    template('h1',this._text)
+    template('#text-container',this._text)
+    template('#content-text',this._text)
+  }
+
+  paintLink(){
+    template('a',this._link)
+    template('yt-formatted-string',this._link)
+    template('yt-icon',this._link)
+  }
+
+  setText(color){
+    console.log("setText")
+    this._text = color
+    this.paintText()
+
+  }
+  setLink(color){
+    this._link = color
+    this.paintLink()
+  }
+
+  infinityScrollColorUpdate(){
+    document.addEventListener("scroll", (event) => {
+
+      const currentOffset = window.pageYOffset
+      const heightWindows = window.innerHeight
+      const del = Math.floor( currentOffset / heightWindows )
+    
+      if(del >= this._numberOfPagePassed)
+      {
+          this._numberOfPagePassed++
+          if(this._text){
+            this.paintText()
+          }
+          if(this._link){
+            this.paintLink()
+          }  
+       }
+    
+    
+    
+    })
+
+
   }
 }
+
+
+
+
+
+
+
 
 
 class Director{
@@ -53,11 +156,16 @@ class Director{
         break;
       case  'text':
         this._domen.performText(color)
+        break;
+      case 'input':
+        this._domen.performInput(color)
+        break;
     }
   }
 
   performAllArea(areaobj){
     for(const  [area, value] of Object.entries(areaobj) ){
+      console.log(value)
       this.performArea(area, value.color )
     }
 
@@ -90,312 +198,11 @@ chrome.runtime.onMessage.addListener(
       if(domain){
         director = new Director(domain)
         console.log(request.state[currentDomain])
+        console.log(request.state[currentDomain])
         director.performAllArea(request.state[currentDomain])
       }
 
   });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// class Area {
-//   _nameArea
-//   _color
-//   constructor(name, valueObject){
-//     this._nameArea = name
-//     this._color = valueObject.color
-//   }
-
-//   get name(){
-//     return this._nameArea
-//   }
-
-//   get color(){
-//     return this._color
-//   }
-// }
-
-
-// template
-
-// class GoogleArea extends Area{
-
-
-
-
-//   links()
-//   text()
-
-
-// }
-
-// class YoutubeArea extends Area{
-//   links()
-//   text()
-// }
-
-// // class Link extends Area{
-// //   constructor(state){
-// //     super(state)
-// //   }
-// //   performPaint() {
-// //     let tags = document.querySelectorAll('a')  
-// //     tags.forEach((val,idx)=>{
-// //         val.style.color = `rgb(${_color.r}, ${_color.g}, ${_color.b})`
-// //     })
-// //   }
-// // }
-
-
-
-
-
-
-// class Text extends Area {
-//   performPaint() {
-//   }
-
-// }
-
-// class Backgrounds extends Area {
-//   performPaint(){
-//   }
-
-
-// }
-
-
-
-
-
-// director{
-// []
-// asdf
-
-
-
-
-
-// }
-
-
-
-
-
-
-
-
-
-
-// class Generator {
-
-//   selectObject(){}
-
-//   paintArea(domainName) {
-//     area = this.selectObject(domainName)
-//     area.performPaint()
-//   }  
-// }
-
-
-
-
-// class TextGenerator extends Generator{
-
-//   selectObject (domain) {
-    
-//     return new Text()
-//   }
-// }
-
-// class LinkGenerator extends Generator{
-//   selectObject(){
-//     return new Link()
-//   }
-// }
-
-
-
-
-
-
-
-
-// const setLinks = (area) =>{
-//   switch(area){
-//     case 'links':
-//       return new LinkGenerator() // передаем сюда директра
-//     case 'text':
-//       return new TextGenerator()
-//     case 'backgrounds':
-//       break;
-//     default:
-//       break;
-//   }
-// }
-
-
-
-
-
-// class Domen {
-// _area = []
-// _nameDomen
-
-//   constructor(state, nameDomen){
-//     this._nameDomen = nameDomen
-//     for ( [key, value] of state){ 
-//       area  = setLinks(key, value)
-//       this._area.push(area)
-//     }
-//   }
-
-//   get listOfArea(){
-//     return this._area
-//   }  
-
-//   performAllPaint(){
-
-//     domen.listOfArea.forEach((area,indx) => {
-//       area.paintArea(this._nameDomen)
-//     })
-  
-//   }
-
-
-
-// }
-
-
-
-
-
-// // class Google extends Domen {
-
-// //   constructor(state){
-// //     super(state)
-// //   }
-
-  
-// // }
-
-
-// // class Youtube  extends Domen {
-// //   constructor(name){
-// //     super(name)
-// //   }
- 
-// // }
-
-
-
-
-
-
-
-
-// const checkKeysForLength = (state, domain) => (Object.keys(state[domain]).length === 0)
-
-// //Google factory
-// const googleWrapper = (state,domain) =>{
-
-//   if(checkKeysForLength) return
-//   return new Google(state,domain)
-
-// }
-// //Youtube factory
-// const youtubeWrapper = (state,domain) =>{
-
-//   if(checkKeysForLength) return
-//   return new Youtube(state,domain)
-
-// }
-
-
-
-
-// const selectObjectForDomen = (currentDomain,state) =>{
-  
-//   if(!checkKeysForLength(currentDomain,state)){
-//     return new Domen(state,currentDomain)
-//   }
-  
-//   // switch(domain){
-//   //   case "google":
-//   //     return googleWrapper(state.google,domain)
-//   //   case "youtube":
-//   //     return youtubeWrapper(state.youtube)
-//   //   default:
-//   //     break;
-//   // }
-// }
-
-
-// chrome.runtime.onMessage.addListener(
-  
-//     async function(request, sender, sendResponse) {
-//       const domain = (document.domain).split('.')[1]
-//       domain = selectObjectForDomen(domain, request.state)
-//       domenManager(domain)
-//       // console.log('state inside contenscript')
-//       // console.log(request.state)
-     
-
-     
-
-//   });
-
-
-
-
-//   function setPageBackgroundColor(color){
-
-//     let tags = document.querySelectorAll('a')  
-//     tags.forEach((val,idx)=>{
-//         val.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`
-//     })
-
-//     domenManager(domen)
-
-// } 
-
-
-
 
 
 
