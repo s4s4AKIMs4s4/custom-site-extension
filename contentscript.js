@@ -21,6 +21,17 @@ const templateBorderColor = (selector, color) => {
 
 }
 
+const templateBackgroundColor = (selector, color) => {
+  const allEments = document.querySelectorAll(selector)
+  allEments.forEach((val,idx)=>{
+                      val.style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`
+                    })
+  }
+
+
+
+
+
 class Google{
  
   performText(color){
@@ -36,8 +47,19 @@ class Google{
   }
 
   performInput(color){
-    template('#container',color)
-    template('#search-icon-legacy',color)
+    templateBorderColor('.RNNXgb', color)
+  }
+
+  performBackground(color){
+  
+    const BackgroundSelecors = ['body','.I6TXqe ','.nm6nmc', '.Lj180d', '.y8Jpof.kpQuGf','.nm6nmc.kpQuGf',
+    '.sfbg','.yg51vc','.f6F9Be','WE0UJf','#extabar','.MXl0lf.mtqGb','.aajZCb',
+    '.Lj9fsd','.tAcEof','.cj2HCb','.mR2gOd','.FalWJb','.c93Gbe','.mnr-c.pla-unit',
+    'html','.s8GCU','.jZWadf','g-inner-card']
+
+    BackgroundSelecors.forEach((val)=>{ templateBackgroundColor(val, color) })
+    
+    //document.querySelectorAll('g-inner-card').forEach((val)=>{ val.style.backgroundColor = 'aqua'})
   }
 
 }
@@ -73,6 +95,11 @@ class Youtube{
     console.log(color)
     templateBorderColor('#container',color)
     templateBorderColor('#search-icon-legacy',color)
+  }
+
+  performBackground(color){
+    templateBackgroundColor('canvas,#endpoint,.style-scope.ytd-app, caption, center, cite, code,dd, del, dfn, div, dl, dt, em, embed, fieldset, font, form, h1, h2, h3, h4, h5, h6, hr, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var',color)
+    document.querySelector('.ytp-gradient-bottom').style.backgroundColor = 'transparent'
   }
 
 }
@@ -159,6 +186,9 @@ class Director{
         break;
       case 'input':
         this._domen.performInput(color)
+        break;
+      case 'backgrounds':
+        this._domen.performBackground(color)
         break;
     }
   }
