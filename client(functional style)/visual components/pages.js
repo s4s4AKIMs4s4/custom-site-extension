@@ -2,6 +2,7 @@ const ul = document.querySelector('.breadcrumbs')
 const menu = document.querySelector('.menu')
 
 
+
 const addLiElement = (indx, text) =>{
     // const ul = document.querySelector('breadcrumbs')
     const li = document.createElement('li')
