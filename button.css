@@ -4,7 +4,7 @@
     width:97vw;
     justify-content:center;
     margin-bottom: 30px; 
-    /* justify-content:space-between ; */
+    
 }
 
 .menu__helper{
@@ -15,11 +15,7 @@
   color:#f34079
 }
 
-/* .text{
-  position: absolute;
-  left:0px;
 
-} */
 .menu__item{
     flex-grow: 1;
     flex-wrap: wrap;
@@ -27,14 +23,7 @@
     max-width: 50px;
     margin: 10px;
 }
-/* button {
-    height: 100px;
-    width: 100px;
-    outline: none;
-    margin: 10px;
-    border: none;
-    border-radius: 2px;
-} */
+
 
 button.current {
     box-shadow: 0 0 0 2px white,
