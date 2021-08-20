@@ -146,11 +146,16 @@ const rendorApply = () => {
 
     buttonApply.append(textButtonApply)
     buttonReset.append(textReset)
-    helper.append(textHelperForReset)
 
+    buttonApply.classList.add('menu__item')
+    buttonReset.classList.add('menu__item')
+
+    helper.append(textHelperForReset)
+    helper.classList.add('menu__helper')
+    
     buttonReset.setAttribute('data-pallet','reset')
     buttonApply.setAttribute('data-pallet','n')
-    helper.classList.add('text')
+    
 
     selectdButtonApply = buttonApply
     buttonResetRef = buttonReset
