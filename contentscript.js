@@ -107,18 +107,36 @@ class Youtube extends commonTemplate{
 
   performBackground(color){
     
-    this.templateBackgroundColor('canvas,#endpoint,.style-scope.ytd-app, caption, center, cite, code,dd, del, dfn, div, dl, dt, em, embed, fieldset, font, form, h1, h2, h3, h4, h5, h6, hr, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var, #items',color)
+    //this.templateBackgroundColor('canvas,#endpoint,.style-scope.ytd-app, caption, center, cite, code,dd, del, dfn, div, dl, dt, em, embed, fieldset, font, form, h1, h2, h3, h4, h5, h6, hr, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var, #items',color)
 
     
+    this.templateBackgroundColor('canvas,#endpoint,.style-scope.ytd-app, caption, center, cite, code,dd, del, dfn, dl, dt, em, embed, fieldset, font, form, h1, h2, h3, h4, h5, h6, hr, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var, #items',color)
 
+    // #chips.ytd-feed-filter-chip-bar-renderer
+    // ytd-mini-guide-entry-renderer
+    // #container.ytd-masthead
+    
+    document.querySelector('#container.ytd-masthead').style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('#chips.ytd-feed-filter-chip-bar-renderer'))
+      document.querySelector('#chips.ytd-feed-filter-chip-bar-renderer').style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('ytd-mini-guide-entry-renderer'))
+      document.querySelector('ytd-mini-guide-entry-renderer').style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('.ytp-exp-bottom-control-flexbox .ytp-volume-area'))
+      document.querySelector('.ytp-exp-bottom-control-flexbox .ytp-volume-area').style.backgroundColor = 'transparent'
+    if(document.querySelector('.ytp-chapter-title-prefix'))
+      document.querySelector('.ytp-chapter-title-prefix').style.backgroundColor = 'transparent'
+  
+    //.ytp-exp-bottom-control-flexbox .ytp-volume-area 
+    //.ytp-time-current, .ytp-time-separator, .ytp-time-duration
+    //.ytp-time-current, .ytp-time-separator, .ytp-time-duration
 
-    document.querySelector('#search-container').style.backgroundColor = 'transparent'
-    document.querySelector('#search-input').style.backgroundColor = 'white'
+    //document.querySelector('#search-container').style.backgroundColor = 'transparent'
+    //document.querySelector('#search-input').style.backgroundColor = 'white'
 
-    if(document.querySelector('.ytp-gradient-bottom'))
-      document.querySelector('.ytp-gradient-bottom').style.backgroundColor = 'transparent'
-    if(document.querySelector('#container.ytd-searchbox input.ytd-searchbox'))
-      document.querySelector('#container.ytd-searchbox input.ytd-searchbox').style.backgroundColor = 'white'
+    // if(document.querySelector('.ytp-gradient-bottom'))
+    //   document.querySelector('.ytp-gradient-bottom').style.backgroundColor = 'transparent'
+    // if(document.querySelector('#container.ytd-searchbox input.ytd-searchbox'))
+    //   document.querySelector('#container.ytd-searchbox input.ytd-searchbox').style.backgroundColor = 'white'
     
     
 
