@@ -108,6 +108,7 @@ const rendorPallet = () =>{
 
     buttonFullColor.setAttribute('data-pallet','fullColor')
     buttonSomeColor.setAttribute('data-pallet','someColor')
+    buttonSomeColor.disabled = true
     //buttonReset.setAttribute('data-pallet','reset')
 
     menu.append(buttonFullColor)

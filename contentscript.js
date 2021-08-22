@@ -125,9 +125,37 @@ class Youtube extends commonTemplate{
       document.querySelector('.ytp-exp-bottom-control-flexbox .ytp-volume-area').style.backgroundColor = 'transparent'
     if(document.querySelector('.ytp-chapter-title-prefix'))
       document.querySelector('.ytp-chapter-title-prefix').style.backgroundColor = 'transparent'
-  
-    //.ytp-exp-bottom-control-flexbox .ytp-volume-area 
-    //.ytp-time-current, .ytp-time-separator, .ytp-time-duration
+    if(document.querySelector('#right-arrow-button.ytd-feed-filter-chip-bar-renderer'))
+      document.querySelector('#right-arrow-button.ytd-feed-filter-chip-bar-renderer').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('#right-arrow.ytd-feed-filter-chip-bar-renderer:before'))
+      document.querySelector('#right-arrow.ytd-feed-filter-chip-bar-renderer:before').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('ytd-browse[mini-guide-visible] ytd-playlist-sidebar-renderer.ytd-browse'))
+      document.querySelector('ytd-browse[mini-guide-visible] ytd-playlist-sidebar-renderer.ytd-browse').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('ytd-item-section-renderer'))
+      document.querySelector('ytd-item-section-renderer').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('ytd-playlist-sidebar-renderer.ytd-browse, ytd-settings-sidebar-renderer.ytd-browse'))
+      document.querySelector('ytd-playlist-sidebar-renderer.ytd-browse, ytd-settings-sidebar-renderer.ytd-browse').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('ytd-browse[page-subtype=playlist][has-sidebar_], ytd-browse[page-subtype=show][has-sidebar_]'))
+      document.querySelector('ytd-browse[page-subtype=playlist][has-sidebar_], ytd-browse[page-subtype=show][has-sidebar_]').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('ytd-page-manager > *.ytd-page-manager'))
+      document.querySelector('ytd-page-manager > *.ytd-page-manager').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer'))
+      document.querySelector('ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+    if(document.querySelector('.sbsb_c'))
+      document.querySelector('.sbsb_c').style.background = 'transparent'
+    
+      
+
+      
+      // ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer  
+      // ytd-page-manager > *.ytd-page-manager 
+     // ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer
+     
+     
+     
+     
+      //.ytp-exp-bottom-control-flexbox .ytp-volume-area 
+      //.ytp-time-current, .ytp-time-separator, .ytp-time-duration
     //.ytp-time-current, .ytp-time-separator, .ytp-time-duration
 
     //document.querySelector('#search-container').style.backgroundColor = 'transparent'
@@ -151,9 +179,10 @@ class ScrollUpadtaAlgoritm extends commonTemplate  {
   _text = false
   _link = false
   _numberOfPagePassed = 1 
+  flag = false
 
   paintText(){
-    const selectors = ['span','h1','#text-container','#content-text','yt-formatted-string']
+    const selectors = ['span','h1','#text-container','#content-text','yt-formatted-string','b']
     rendoringTemplate(selectors, this._text, this.template )
   }
 
@@ -172,6 +201,15 @@ class ScrollUpadtaAlgoritm extends commonTemplate  {
     this._link = color
     this.paintLink()
   }
+  
+  paint() {
+    if(this._text){
+      this.paintText()
+    }
+    if(this._link){
+      this.paintLink()
+    }  
+  }
 
   infinityScrollColorUpdate(){
     document.addEventListener("scroll", (event) => {
@@ -180,15 +218,15 @@ class ScrollUpadtaAlgoritm extends commonTemplate  {
       const heightWindows = window.innerHeight
       const del = Math.floor( currentOffset / heightWindows )
     
+      if (!this.flag){
+        this.paint()
+        this.flag = true
+      }
+
       if(del >= this._numberOfPagePassed)
       {
           this._numberOfPagePassed++
-          if(this._text){
-            this.paintText()
-          }
-          if(this._link){
-            this.paintLink()
-          }  
+          this.paint()
        }
     
     
