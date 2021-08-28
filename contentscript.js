@@ -64,7 +64,7 @@ class Google extends commonTemplate{
     const BackgroundSelecors = ['body','.I6TXqe ','.nm6nmc', '.Lj180d', '.y8Jpof.kpQuGf','.nm6nmc.kpQuGf',
     '.sfbg','.yg51vc','.f6F9Be','WE0UJf','#extabar','.MXl0lf.mtqGb','.aajZCb',
     '.Lj9fsd','.tAcEof','.cj2HCb','.mR2gOd','.FalWJb','.c93Gbe','.mnr-c.pla-unit',
-    'html','.s8GCU','.jZWadf','g-inner-card','ytd-author-comment-badge-renderer','.ytp-paid-content-overlay','.ytp-spinner']
+    'html','.s8GCU','.jZWadf','g-inner-card','ytd-author-comment-badge-renderer','.ytp-paid-content-overlay','.ytp-spinner','.ifM9O','.gb_pa.gb_Zd.gb_Va.gb_vc.gb_Qd']
     
     rendoringTemplate(BackgroundSelecors, color, this.templateBackgroundColor)
 
@@ -104,17 +104,14 @@ class Youtube extends commonTemplate{
     rendoringTemplate(selectors, color, this.templateBorderColor )
 
   }
-
+//ужас!!! лижбы работало
+//необходимо отрефакторить
   performBackground(color){
     
-    //this.templateBackgroundColor('canvas,#endpoint,.style-scope.ytd-app, caption, center, cite, code,dd, del, dfn, div, dl, dt, em, embed, fieldset, font, form, h1, h2, h3, h4, h5, h6, hr, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var, #items',color)
 
-    
     this.templateBackgroundColor('canvas,#endpoint,.style-scope.ytd-app, caption, center, cite, code,dd, del, dfn, dl, dt, em, embed, fieldset, font, form, h1, h2, h3, h4, h5, h6, hr, i, iframe, img, ins, kbd, label, legend, li, menu, object, ol, p, pre, q, s, samp, small, span, strike, strong, sub, sup, table, tbody, td, tfoot, th, thead, tr, tt, u, ul, var, #items',color)
 
-    // #chips.ytd-feed-filter-chip-bar-renderer
-    // ytd-mini-guide-entry-renderer
-    // #container.ytd-masthead
+
     
     document.querySelector('#container.ytd-masthead').style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`
     if(document.querySelector('#chips.ytd-feed-filter-chip-bar-renderer'))
@@ -141,33 +138,28 @@ class Youtube extends commonTemplate{
       document.querySelector('ytd-page-manager > *.ytd-page-manager').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
     if(document.querySelector('ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer'))
       document.querySelector('ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
-    if(document.querySelector('.sbsb_c'))
-      document.querySelector('.sbsb_c').style.background = 'transparent'
-    
+
+      if(document.querySelector('.sbsb_a'))
+      document.querySelector('.sbsb_a').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
       
-
-      
-      // ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer  
-      // ytd-page-manager > *.ytd-page-manager 
-     // ytd-c4-tabbed-header-renderer.grid-4-columns #channel-header.ytd-c4-tabbed-header-renderer
-     
-     
-     
-     
-      //.ytp-exp-bottom-control-flexbox .ytp-volume-area 
-      //.ytp-time-current, .ytp-time-separator, .ytp-time-duration
-    //.ytp-time-current, .ytp-time-separator, .ytp-time-duration
-
-    //document.querySelector('#search-container').style.backgroundColor = 'transparent'
-    //document.querySelector('#search-input').style.backgroundColor = 'white'
-
-    // if(document.querySelector('.ytp-gradient-bottom'))
-    //   document.querySelector('.ytp-gradient-bottom').style.backgroundColor = 'transparent'
-    // if(document.querySelector('#container.ytd-searchbox input.ytd-searchbox'))
-    //   document.querySelector('#container.ytd-searchbox input.ytd-searchbox').style.backgroundColor = 'white'
-    
-    
-
+      if(document.querySelector('.sbfl_b '))
+      document.querySelector('.sbfl_b ').style.backgroundColor = `rgb(${color.r}, ${color.g}, ${color.b})`
+      if(document.querySelector('.sbfl_b '))
+        document.querySelector('.sbfl_b ').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`
+        // if(document.querySelector('#tabs-inner-container.ytd-c4-tabbed-header-renderer '))
+        // document.querySelector('#tabs-inner-container.ytd-c4-tabbed-header-renderer').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`  
+        
+        if(document.querySelector('ytd-two-column-browse-results-renderer[page-subtype=history] #secondary.ytd-two-column-browse-results-renderer '))
+        document.querySelector('ytd-two-column-browse-results-renderer[page-subtype=history] #secondary.ytd-two-column-browse-results-renderer').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`  
+        if(document.querySelector('#tabs-inner-container.ytd-c4-tabbed-header-renderer '))
+        
+        
+        if(document.querySelector('ytd-browse[guide-persistent-and-visible] ytd-playlist-sidebar-renderer.ytd-browse'))
+        document.querySelector('ytd-browse[guide-persistent-and-visible] ytd-playlist-sidebar-renderer.ytd-browse').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`  
+        
+        document.querySelector('ytd-page-manager > *.ytd-page-manager').style.background = `rgb(${color.r}, ${color.g}, ${color.b})`  
+         
+        
   }
 
 }
@@ -182,12 +174,12 @@ class ScrollUpadtaAlgoritm extends commonTemplate  {
   flag = false
 
   paintText(){
-    const selectors = ['span','h1','#text-container','#content-text','yt-formatted-string','b']
+    const selectors = ['span','h1','#text-container','#content-text','yt-formatted-string','b','.sbsb_c.gsfs','sbqs_c','b']
     rendoringTemplate(selectors, this._text, this.template )
   }
 
   paintLink(){
-    const selectors = ['a','yt-icon']
+    const selectors = ['a','yt-icon',]
     rendoringTemplate(selectors, this._link, this.template )
 
   }
@@ -282,15 +274,18 @@ class Director{
 const checkKeysForLength = (state, domain) => (Object.keys(state[domain]).length === 0)
 
 const selectObjectForDomen = (currentDomain, state) =>{
-  
-  if(!checkKeysForLength(state, currentDomain)){
-    switch (currentDomain){
-    case 'google': return new Google
-    case 'youtube': return new Youtube
+  try{
+    if(!checkKeysForLength(state, currentDomain)){
+      switch (currentDomain){
+      case 'google': return new Google
+      case 'youtube': return new Youtube
+      }
     }
+    else return null
   }
-  else return null
-
+  catch(e){
+    return null
+  }
 }
 
 chrome.runtime.onMessage.addListener(

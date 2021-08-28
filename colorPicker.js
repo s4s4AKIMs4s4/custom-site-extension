@@ -55,7 +55,7 @@ class Picker {
       const onMouseDown = (e) => {
         let currentX = e.clientX - this.target.offsetLeft;
         let currentY = e.clientY - this.target.offsetTop;
-        if(currentY > this.pickerCircle.y && currentY < this.pickerCircle.y + this.pickerCircle.width && currentX > this.pickerCircle.x && currentX < this.pickerCircle.x + this.pickerCircle.width) {
+        if(currentY > this.pickerCircle.y - 5 && currentY - 5 < this.pickerCircle.y + this.pickerCircle.width && currentX > this.pickerCircle.x - 5 && currentX - 5 < this.pickerCircle.x + this.pickerCircle.width) {
           isMouseDown = true;
         } else {
           this.pickerCircle.x = currentX;
