@@ -9,13 +9,13 @@ const changeState = (page,index) => ({...page, index})
 
 
 const init = (it) =>{
-    addLiElement(it,'inseption')
+    addLiElement(it,'domen')
     rendorInit()
     //функция рендор меню
 }
 
 const functionality = (it) =>{
-    addLiElement(it,'functionality')
+    addLiElement(it,'place')
     rendorArea()
 }
 const pallet = (it) =>{
@@ -23,7 +23,7 @@ const pallet = (it) =>{
     rendorPallet()
 }
 const apply = (it) =>{
-    addLiElement(it, 'apply')
+    addLiElement(it, 'color')
     rendorApply()
 }
 

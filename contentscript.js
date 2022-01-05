@@ -46,7 +46,7 @@ class Google extends commonTemplate{
  
   performText(color){
 
-    const selectors = ['span', 'em']
+    const selectors = ['span', 'em','.st']
     rendoringTemplate(selectors, color, this.template)
 
 
@@ -64,7 +64,7 @@ class Google extends commonTemplate{
     const BackgroundSelecors = ['body','.I6TXqe ','.nm6nmc', '.Lj180d', '.y8Jpof.kpQuGf','.nm6nmc.kpQuGf',
     '.sfbg','.yg51vc','.f6F9Be','WE0UJf','#extabar','.MXl0lf.mtqGb','.aajZCb',
     '.Lj9fsd','.tAcEof','.cj2HCb','.mR2gOd','.FalWJb','.c93Gbe','.mnr-c.pla-unit',
-    'html','.s8GCU','.jZWadf','g-inner-card','ytd-author-comment-badge-renderer','.ytp-paid-content-overlay','.ytp-spinner','.ifM9O','.gb_pa.gb_Zd.gb_Va.gb_vc.gb_Qd']
+    'html','.s8GCU','.jZWadf','g-inner-card','ytd-author-comment-badge-renderer','.ytp-paid-content-overlay','.ytp-spinner','.ifM9O','.cG5GOd','.GHDvEf','.gb_pa.gb_Zd.gb_Va.gb_vc.gb_Qd','.U1hlv.Aajd3']
     
     rendoringTemplate(BackgroundSelecors, color, this.templateBackgroundColor)
 
@@ -104,8 +104,7 @@ class Youtube extends commonTemplate{
     rendoringTemplate(selectors, color, this.templateBorderColor )
 
   }
-//ужас!!! лижбы работало
-//необходимо отрефакторить
+//it is trash.Need to refactoring
   performBackground(color){
     
 

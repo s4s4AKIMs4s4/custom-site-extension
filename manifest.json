@@ -1,15 +1,19 @@
 {
 
-    "name": "Getting Started Example",
+    "name": "Custom sites",
     
-    "description":"Build an Extension!",
+    "description":"create a website style",
     
-    "version":"1.0",
+    "version":"1.2",
     
     "manifest_version": 3,
   
     "background":{
         "service_worker":"background.js"
+    },
+
+    "icons":{
+        "48":"image 3.png"
     },
 
     "content_scripts": [
@@ -21,7 +25,7 @@
 
 
 
-    "permissions":["storage","declarativeContent", "activeTab", "scripting","tabs","webRequest"],
+    "permissions":["storage", "activeTab"],
     "action":{
         "default_popup":"popup.html"
     },
