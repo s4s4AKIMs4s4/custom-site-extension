@@ -4,9 +4,7 @@ let selectedColor = null
 let selectdButtonApply = null
 let interval = null
 
-
 const changeState = (page,index) => ({...page, index})
-
 
 const init = (it) =>{
     addLiElement(it,'domen')
