@@ -1,8 +1,6 @@
-
 const changeDomen = (state, element) => {
     return {...state, domen: element.getAttribute("data-domen")} 
 }
-
 
 const changeArea = (state, element) => {
     return {...state, area: element.getAttribute("data-area")} 
@@ -18,8 +16,6 @@ const changeColor = (state,element) =>{
     else
         return {...state, pallet: element.getAttribute("data-pallet")}   
 }
-
-
 
 let flagApply = false
 //closes for menu event - click
@@ -46,14 +42,12 @@ let menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
         flagApply = false 
     }
     else{
-        // state = sesionBreadCrumbs(index)
         stateAction =  dict[index](stateAction, button)
         
         flagApply = true 
         chrome.runtime.sendMessage({flagApply: flagApply, stateAction: stateAction})
         
     }
-    console.log(stateAction)
 }
 let menuEvent = menuHandler()
 

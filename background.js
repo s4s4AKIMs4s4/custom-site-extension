@@ -5,8 +5,6 @@ chrome.runtime.onInstalled.addListener(()=>{
  
 })
 
-
-
 function sendToContenJs(tabId, changeInfo, tab){
   chrome.storage.sync.get(['full'], function(result) {
     chrome.tabs.sendMessage( tabId, {
@@ -18,13 +16,11 @@ function sendToContenJs(tabId, changeInfo, tab){
   });
 }
 
-
 chrome.tabs.onUpdated.addListener(
   function(tabId, changeInfo, tab) {
     sendToContenJs(tabId, changeInfo, tab)
   }
 );
-
 
 chrome.tabs.onActivated.addListener(
   function(tabId, changeInfo, tab) {
@@ -32,7 +28,6 @@ chrome.tabs.onActivated.addListener(
   }
 ); 
   
-
 function getStateFromStorage(result){
   let state = {}
   if(result.full === undefined){ 
@@ -50,10 +45,9 @@ function getStateFromStorage(result){
   
 }
 
-
 async function getFromStorageandSendToContent (stateAction) {
 
-chrome.storage.sync.get(['full'], function(result) {
+  chrome.storage.sync.get(['full'], function(result) {
  
   const domen = stateAction.domen
   const area = stateAction.area

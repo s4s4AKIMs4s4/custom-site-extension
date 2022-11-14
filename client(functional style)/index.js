@@ -10,27 +10,13 @@ const methods= {
     3:apply,
 }
 
-
 let breadCrumbs = (initialPage,methods) => { 
     let page = initialPage
     return (pageNumber) => {
-
         page = insert(page, methods, pageNumber)
         return page
     };
-
 }
 
 let  sesionBreadCrumbs = breadCrumbs(initialPage,methods)
 let page  = sesionBreadCrumbs(1)
-
-
-
-
-
-
-
-
-
-
-

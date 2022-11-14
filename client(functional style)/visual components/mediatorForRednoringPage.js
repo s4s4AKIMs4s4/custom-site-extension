@@ -36,7 +36,6 @@ const deleteMenu = () =>{
     })
 }
 
-
 const insert = (page, methods, idx) =>{
     page = changeState(page,0)
     for(let it = 0; it < idx; it++){
@@ -46,7 +45,6 @@ const insert = (page, methods, idx) =>{
     }
     
     return page
-    
 }
 
 const ulHandler = ({index}) => (event) =>{

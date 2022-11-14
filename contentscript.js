@@ -6,14 +6,22 @@ function rendoringTemplate(selectors, color, callbackForRedor) {
 
 
 class commonTemplate {
-
+    // dataset.contentFeature === '1'
     template = (selector, color) => {
         const allEments = document.querySelectorAll(selector)
         allEments.forEach((val, idx) => {
-            val.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`
+            if(val.children.length === 0)
+                val.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`
+            else if(selector === 'h3+div' || selector === 'a *'|| selector === 'div[role="heading"]'){
+                val.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`
+            }    
+            else{
+                if(val.children[0].tagName === 'EM')
+                    val.style.color = `rgb(${color.r}, ${color.g}, ${color.b})`
+            }    
         })
-
     }
+
 
     templateBorderColor = (selector, color) => {
         const allEments = document.querySelectorAll(selector)
@@ -33,22 +41,19 @@ class commonTemplate {
     templateOneBackgroundColor = (selector, color) => {
         document.querySelector(selector).style.backgroundColor = color
     }
-
-
 }
 
 class Google extends commonTemplate {
 
     performText(color) {
-
-        const selectors = ['span', 'em', '.st']
+        const selectors = ['span', 'em', '.st', '*[data-content-feature="1"] div', 'h3+div']
         rendoringTemplate(selectors, color, this.template)
-
-
     }
 
     performLinks(color) {
-        this.template('a', color)
+        const selectors = ['a','h3','cite', 'a *', 'div[role="heading"]']
+        rendoringTemplate(selectors, color, this.template)
+        // this.template('a', color)
     }
 
     performInput(color) {
@@ -202,11 +207,7 @@ class ScrollUpadtaAlgoritm extends commonTemplate {
                 this._numberOfPagePassed++
                 this.paint()
             }
-
-
         })
-
-
     }
 }
 
@@ -270,7 +271,6 @@ chrome.runtime.onMessage.addListener(
             director = new Director(domain)
             director.performAllArea(request.state[currentDomain])
         }
-
     });
 
 

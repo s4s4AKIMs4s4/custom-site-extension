@@ -1,10 +1,7 @@
 const ul = document.querySelector('.breadcrumbs')
 const menu = document.querySelector('.menu')
 
-
-
 const addLiElement = (indx, text) =>{
-    // const ul = document.querySelector('breadcrumbs')
     const li = document.createElement('li')
     li.setAttribute('data-breadCrumbs',indx)
     const a = document.createElement('a')
@@ -21,8 +18,6 @@ const deleteLiElement = () =>{
     liItems.forEach((val)=> val.remove() )
 }
 
-
-
 const deleteButtons = () => {
     let buttons = document.querySelectorAll('.menu *')
     if(buttons !== null) buttons.forEach((val)=> val.remove())
@@ -38,15 +33,11 @@ const rendorInit = () =>{
     const textYoutube = document.createTextNode('Youtube')
     const textGoogle = document.createTextNode('Google')
 
-    
-
     buttonYoutube.append(textYoutube)
     buttonGoogle.append(textGoogle)
 
     buttonYoutube.setAttribute('data-domen','youtube')
     buttonGoogle.setAttribute('data-domen','google')
-
-
 
     menu.append(buttonGoogle)
     menu.append(buttonYoutube)
@@ -57,8 +48,6 @@ const rendorArea = () =>{
     const buttonLinks = document.createElement('button')
     const buttonBackgrounds = document.createElement('button')
     const buttonInput = document.createElement('button')
-
-
 
     buttonText.classList.add('menu__item')
     buttonLinks.classList.add('menu__item')
@@ -80,41 +69,31 @@ const rendorArea = () =>{
     buttonBackgrounds.setAttribute("data-area","backgrounds")
     buttonInput.setAttribute("data-area","input")
 
-
     menu.append(buttonText)
     menu.append(buttonLinks)
-    menu.append(buttonBackgrounds)
+    // menu.append(buttonBackgrounds)
     menu.append(buttonInput)
 }
-
-
 
 const rendorPallet = () =>{
     const buttonFullColor = document.createElement('button')
     const buttonSomeColor = document.createElement('button')
-    //const buttonReset =  document.createElement('button')
 
     buttonFullColor.classList.add('menu__item')
     buttonSomeColor.classList.add('menu__item')
-   // buttonReset.classList.add('menu__item')
 
     const textFullColor = document.createTextNode('Full palltre')
     const textSomeColor = document.createTextNode('Some colors')
-    //const textReset =  document.createTextNode('Reset color')
 
     buttonFullColor.append(textFullColor)
     buttonSomeColor.append(textSomeColor)
-    //buttonReset.append(textReset)
 
     buttonFullColor.setAttribute('data-pallet','fullColor')
     buttonSomeColor.setAttribute('data-pallet','someColor')
     buttonSomeColor.disabled = true
-    //buttonReset.setAttribute('data-pallet','reset')
 
     menu.append(buttonFullColor)
-    menu.append(buttonSomeColor)
-    //menu.append(buttonReset)
-
+    // menu.append(buttonSomeColor)
 }
 let buttonResetRef = null
 
@@ -123,8 +102,6 @@ const rendorApply = () => {
     let templateContent = template.content;
     console.log(template.content)
     document.body.appendChild(templateContent.cloneNode(true));
-    // menu.append(document.createElement('my-pallet'))
-    // menu.appendChild(templateContent.cloneNode(true));
     picker = new Picker(document.getElementById("color-picker"), 250, 220);
     //Draw 
     interval = setInterval(() => picker.draw(), 1);
@@ -145,7 +122,6 @@ const rendorApply = () => {
     const textReset =  document.createTextNode('Reset color')
     const textHelperForReset = document.createTextNode('on reset, refresh the page')
 
-
     buttonApply.append(textButtonApply)
     buttonReset.append(textReset)
 
@@ -158,7 +134,6 @@ const rendorApply = () => {
     buttonReset.setAttribute('data-pallet','reset')
     buttonApply.setAttribute('data-pallet','n')
     
-
     selectdButtonApply = buttonApply
     buttonResetRef = buttonReset
     menu.append(helper)

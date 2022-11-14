@@ -53,38 +53,38 @@ const rendorInit = () =>{
 }
 
 const rendorArea = () =>{
-    const buttonText = document.createElement('button')
-    const buttonLinks = document.createElement('button')
-    const buttonBackgrounds = document.createElement('button')
-    const buttonInput = document.createElement('button')
+    // const buttonText = document.createElement('button')
+    // const buttonLinks = document.createElement('button')
+    // const buttonBackgrounds = document.createElement('button')
+    // const buttonInput = document.createElement('button')
 
 
 
-    buttonText.classList.add('menu__item')
-    buttonLinks.classList.add('menu__item')
-    buttonBackgrounds.classList.add('menu__item')
-    buttonInput.classList.add('menu__item')
+    // buttonText.classList.add('menu__item')
+    // buttonLinks.classList.add('menu__item')
+    // buttonBackgrounds.classList.add('menu__item')
+    // buttonInput.classList.add('menu__item')
 
-    const textText = document.createTextNode('Text')
-    const textLinks = document.createTextNode('Links')
-    const textBackgrounds = document.createTextNode('Backgrounds')
-    const textInput = document.createTextNode('Input field')
+    // const textText = document.createTextNode('Text')
+    // const textLinks = document.createTextNode('Links')
+    // const textBackgrounds = document.createTextNode('Backgrounds')
+    // const textInput = document.createTextNode('Input field')
 
-    buttonText.append(textText)
-    buttonLinks.append(textLinks)
-    buttonBackgrounds.append(textBackgrounds)
-    buttonInput.append(textInput)
+    // buttonText.append(textText)
+    // buttonLinks.append(textLinks)
+    // buttonBackgrounds.append(textBackgrounds)
+    // buttonInput.append(textInput)
 
-    buttonText.setAttribute("data-area","text")
-    buttonLinks.setAttribute("data-area","links")
-    buttonBackgrounds.setAttribute("data-area","backgrounds")
-    buttonInput.setAttribute("data-area","input")
+    // buttonText.setAttribute("data-area","text")
+    // buttonLinks.setAttribute("data-area","links")
+    // buttonBackgrounds.setAttribute("data-area","backgrounds")
+    // buttonInput.setAttribute("data-area","input")
 
 
-    menu.append(buttonText)
-    menu.append(buttonLinks)
-    menu.append(buttonBackgrounds)
-    menu.append(buttonInput)
+    // menu.append(buttonText)
+    // menu.append(buttonLinks)
+    // menu.append(buttonBackgrounds)
+    // menu.append(buttonInput)
 }
 
 
@@ -141,20 +141,11 @@ const rendorApply = () => {
     menu.append(buttonApply)
 }
 
-
-
-
-
-  
-
-
 const changeState = (state,index) => ({...state, index})
-
 
 const init = (it) =>{
     addLiElement(it,'inseption')
     rendorInit()
-    //функция рендор меню
 }
 
 const functionality = (it) =>{
@@ -186,19 +177,14 @@ const deleteMenu = () =>{
     })
 }
 
-
 const insert = (state, methods, idx) =>{
-    console.log("yep it is working")
     state = changeState(state,0)
-    // deleteMenu()
     for(let it = 0; it < idx; it++){
         state = changeState(state, state.index + 1)
         deleteButtons()
         methods[it](it)
     }
-
     return state
-
 }
 
 let initialState = {
@@ -207,26 +193,16 @@ let initialState = {
 }
 
 let breadCrumbs = (initialState,methods) => { 
-    console.debug()
     let state = initialState
     return (props) => {
-
         state = insert(state,methods,props)
         return state
     };
 
 }
 
-
-
-
-
-
-
 let  sesionBreadCrumbs = breadCrumbs(initialState,methods)
 let state  = sesionBreadCrumbs(1)
-
-
 
 const ulHandler = ({index}) => (event) =>{
     if(event.target.closest('li') ){
@@ -240,19 +216,12 @@ const ulHandler = ({index}) => (event) =>{
     }
 }
 
-
-
-
-
 const initStateAction = {
     domen:null,
     area:null,
     pallet:null,
     color:null,
 }
-
-
-
 
 const changeDomen = (state, element) => {
     return {...state, domen: element.getAttribute("data-domen")} 
@@ -271,10 +240,8 @@ const changeColor = (state) =>{
     return {...state, color:selectedColor}
 }
 
-
-
  let flagApply = false
-//closes for menu event - click
+
 let menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
     index = state.index
     const button = event.target
@@ -291,14 +258,11 @@ let menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
         flagApply = false 
     }
     else{
-        // state = sesionBreadCrumbs(index)
         stateAction =  dict[index](stateAction)
-        
         flagApply = true 
         chrome.runtime.sendMessage({flagApply: flagApply, stateAction: stateAction})
         
     }
-    console.log(stateAction)
 }
 let menuEvent = menuHandler()
 
