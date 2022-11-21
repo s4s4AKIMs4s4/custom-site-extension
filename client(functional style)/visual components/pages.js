@@ -100,7 +100,6 @@ let buttonResetRef = null
 const rendorApply = () => {
     let template = document.getElementById('my-pallet');
     let templateContent = template.content;
-    console.log(template.content)
     document.body.appendChild(templateContent.cloneNode(true));
     picker = new Picker(document.getElementById("color-picker"), 250, 220);
     //Draw 

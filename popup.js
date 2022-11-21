@@ -119,7 +119,6 @@ let interval = null
 const rendorApply = () => {
     let template = document.getElementById('my-pallet');
     let templateContent = template.content;
-    console.log(template.content)
     document.body.appendChild(templateContent.cloneNode(true));
     // menu.append(document.createElement('my-pallet'))
     // menu.appendChild(templateContent.cloneNode(true));
