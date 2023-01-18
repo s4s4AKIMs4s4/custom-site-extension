@@ -26,21 +26,33 @@ const deleteButtons = () => {
 const rendorInit = () =>{
     const buttonYoutube = document.createElement('button')
     const buttonGoogle = document.createElement('button')
+    const buttonReset = document.createElement('button')
 
     buttonYoutube.classList.add('menu__item')
     buttonGoogle.classList.add('menu__item')
+    buttonReset.classList.add('menu__item')
 
     const textYoutube = document.createTextNode('Youtube')
     const textGoogle = document.createTextNode('Google')
+    const textReset = document.createTextNode('Reset all styles')
 
     buttonYoutube.append(textYoutube)
     buttonGoogle.append(textGoogle)
+    buttonReset.append(textReset)
+
+    buttonReset.onclick = (e) => {
+        e.stopPropagation()
+        openResetAllColorAlert()
+        chrome.runtime.sendMessage({isReset:true})
+    }
 
     buttonYoutube.setAttribute('data-domen','youtube')
     buttonGoogle.setAttribute('data-domen','google')
 
+
     menu.append(buttonGoogle)
     menu.append(buttonYoutube)
+    menu.append(buttonReset)
 }
 
 const rendorArea = () =>{
@@ -97,6 +109,11 @@ const rendorPallet = () =>{
 }
 let buttonResetRef = null
 
+const openBuyMeCoffe = (event) => {
+    event.stopPropagation()
+    window.open('https://www.buymeacoffee.com/akimovivanj')
+}
+
 const rendorApply = () => {
     let template = document.getElementById('my-pallet');
     let templateContent = template.content;
@@ -116,6 +133,17 @@ const rendorApply = () => {
     const buttonReset =  document.createElement('button')
     const helper = document.createElement('div')
     const divElement = document.createElement('div')
+
+
+    const buyMeCofeeLink = document.createElement('a')
+    const buyMeCofeeImage = document.createElement('img')
+    buyMeCofeeImage.setAttribute('src', 'https://cdn.buymeacoffee.com/buttons/v2/default-red.png')
+    buyMeCofeeImage.setAttribute('alt', 'Buy Me A Coffee')
+    buyMeCofeeImage.setAttribute('style', 'height: 40px !important;width: 148px !important;margin-left:70px')
+    buyMeCofeeLink.setAttribute('href', 'https://www.buymeacoffee.com/akimovivanj')
+    buyMeCofeeLink.onclick = openBuyMeCoffe
+    buyMeCofeeLink.append(buyMeCofeeImage)
+
 
     const textButtonApply = document.createTextNode('Apply color')
     const textReset =  document.createTextNode('Reset color')
@@ -139,6 +167,8 @@ const rendorApply = () => {
     menu.append(divElement)
     menu.append(buttonApply)
     menu.append(buttonReset)
+    menu.append(buyMeCofeeLink)
+
 }
 
 

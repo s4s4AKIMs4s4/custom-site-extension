@@ -11,10 +11,14 @@ const changePallet = (state, element) => {
 }
 
 const changeColor = (state,element) =>{
-    if(element.getAttribute("data-pallet") === 'n')
+    if(element.getAttribute("data-pallet") === 'n'){
+        openApplyColorAlert()
         return {...state, color:selectedColor}
-    else
+    }
+    else{
+        openResetColorAlert()
         return {...state, pallet: element.getAttribute("data-pallet")}   
+    }
 }
 
 let flagApply = false
@@ -26,7 +30,7 @@ const initStateAction = {
     color:null,
 }
 
-let menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
+let menuHandler = (stateAction = initStateAction) => ({index}) => (event) => {
     index = page.index
     const button = event.target
     let dict = {
@@ -43,10 +47,8 @@ let menuHandler =(stateAction = initStateAction) => ({index}) => (event) => {
     }
     else{
         stateAction =  dict[index](stateAction, button)
-        
         flagApply = true 
         chrome.runtime.sendMessage({flagApply: flagApply, stateAction: stateAction})
-        
     }
 }
 let menuEvent = menuHandler()
@@ -54,7 +56,29 @@ let menuEvent = menuHandler()
 ul.addEventListener('click',ulHandler(page))
 menu.addEventListener('click',menuEvent(page))
 
+const closeColorCLick = () => {
+    closeResetColorAlert()
+}
+
+const closeAllColorCLick = () => {
+    closeResetAllColorAlert()
+}
+
+const closeApplyColor = () => {
+    closeApplyColorAlert()
+}
+
+const warningCloseColorAlert = document.getElementById('closeColorAlert')
+const warningCloseAllColorAlert = document.getElementById('closeAllColorAlert')
+const successColorAlert = document.getElementById('applyColorAlert')
+
 if(selectdButtonApply)
-    selectdButtonApply.addEventListener('click',menuEvent(page))
+    selectdButtonApply.addEventListener('click', menuEvent(page))
 if(buttonResetRef)
-    buttonResetRef.addEventListener('click',menuEvent(page))
+    buttonResetRef.addEventListener('click', menuEvent(page))
+if(warningCloseColorAlert)
+    warningCloseColorAlert.addEventListener('click', closeColorCLick)
+if(warningCloseAllColorAlert)
+    warningCloseAllColorAlert.addEventListener('click', closeAllColorCLick)
+if(successColorAlert)
+    successColorAlert.addEventListener('click', closeApplyColor)

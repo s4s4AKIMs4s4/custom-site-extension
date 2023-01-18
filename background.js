@@ -1,6 +1,11 @@
 let flagApply = false
 let stateColor = null
 
+const DEFAULT_STATE = {
+  google:{},
+  youtube:{},
+}
+
 chrome.runtime.onInstalled.addListener(()=>{
  
 })
@@ -26,16 +31,13 @@ chrome.tabs.onActivated.addListener(
   function(tabId, changeInfo, tab) {
     sendToContenJs(tabId, changeInfo, tab)
   }
-); 
-  
+);
+
 function getStateFromStorage(result){
   let state = {}
   if(result.full === undefined){ 
     state = {
-      full: {
-        google:{},
-        youtube:{},
-      } 
+      full: DEFAULT_STATE
     }
     return state 
   } else {
@@ -68,11 +70,22 @@ async function getFromStorageandSendToContent (stateAction) {
     chrome.tabs.sendMessage(tabs[0].id, {state: state.full});
   });  
   })
-
 }
 
-chrome.runtime.onMessage.addListener( function(request,sender,sendResponse)
-{
-  getFromStorageandSendToContent(request.stateAction) 
+const resetAllStyle = () => {
+  console.log('resetAllStyle')
+  const state = {
+    full: DEFAULT_STATE
+  }
+  chrome.storage.sync.set(state, function() {
+    console.log('Object is set ');
+  });  
+}
+
+chrome.runtime.onMessage.addListener( (request,sender,sendResponse) => {
+  console.log(request)
+  if(request.isReset)
+    resetAllStyle()
+  else
+    getFromStorageandSendToContent(request.stateAction) 
 })
-  

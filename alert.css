@@ -1,0 +1,36 @@
+.warning-alert{
+    background-color: #feebc8;
+    padding: 1em;
+    font-family: Verdana, Helvetica, sans-serif;
+    position: relative;
+}
+.warning-alert__close-icon{
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+.warning-alert_visible{
+    display: block;
+}
+.warning-alert_invisible{
+    display: none;
+}
+
+
+.success-alert{
+    background-color: #c6f6d5;
+    padding: 1em;
+    font-family: Verdana, Helvetica, sans-serif;
+    position: relative;
+}
+.success-alert__close-icon{
+    position:absolute;
+    right:10px;
+    top:10px;
+}
+.success-alert_visible{
+    display: block;
+}
+.success-alert_invisible{
+    display: none;
+}

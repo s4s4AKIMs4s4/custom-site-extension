@@ -9,7 +9,6 @@ const changeState = (page,index) => ({...page, index})
 const init = (it) =>{
     addLiElement(it,'domen')
     rendorInit()
-    //функция рендор меню
 }
 
 const functionality = (it) =>{
