@@ -1,4 +1,4 @@
-function rendoringTemplate(selectors, color, callbackForRedor) {
+function renderingTemplate(selectors, color, callbackForRedor) {
   selectors.forEach((val) => {
     const allEments = document.querySelectorAll(val);
     callbackForRedor(val, color, allEments);
@@ -70,12 +70,12 @@ class Google extends commonTemplate {
       };
     };
 
-    rendoringTemplate(selectors, color, paintTextHOC(this.template));
+    renderingTemplate(selectors, color, paintTextHOC(this.template));
   }
 
   performLinks(color) {
     const selectors = ["a", "h3", "cite", "a *", 'div[role="heading"]'];
-    rendoringTemplate(selectors, color, this.template);
+    renderingTemplate(selectors, color, this.template);
   }
 
   performInput(color) {
@@ -103,7 +103,7 @@ class Youtube extends commonTemplate {
 
   performInput(color) {
     const selectors = ["#container", "#search-icon-legacy"];
-    rendoringTemplate(selectors, color, this.templateBorderColor);
+    renderingTemplate(selectors, color, this.templateBorderColor);
   }
 }
 
@@ -146,12 +146,12 @@ class ScrollUpadtaAlgoritm extends commonTemplate {
         callback(selector, color, allEments);
       };
     };
-    rendoringTemplate(selectors, this._text, paintTextHOC(this.template));
+    renderingTemplate(selectors, this._text, paintTextHOC(this.template));
   }
 
   paintLink() {
     const selectors = ["a", "yt-icon"];
-    rendoringTemplate(selectors, this._link, this.template);
+    renderingTemplate(selectors, this._link, this.template);
   }
 
   setText(color) {
@@ -237,7 +237,6 @@ const selectObjectForDomen = (currentDomain, state) => {
     if (!checkKeysForLength(state, currentDomain)) {
       switch (currentDomain) {
         case "google": {
-          console.log("hello google");
           return new Google();
         }
         case "youtube":

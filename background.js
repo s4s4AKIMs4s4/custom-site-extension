@@ -6,16 +6,14 @@ const DEFAULT_STATE = {
   youtube:{},
 }
 
-chrome.runtime.onInstalled.addListener(()=>{
- 
-})
+chrome.runtime.onInstalled.addListener(()=>{})
 
 function sendToContenJs(tabId, changeInfo, tab){
-  chrome.storage.sync.get(['full'], function(result) {
+  chrome.storage.sync.get(['data'], function(result) {
     chrome.tabs.sendMessage( tabId, {
       message: 'hello!',
       url: changeInfo,
-      state: result.full,
+      state: result.data,
       tabId: tabId
     })      
   });
@@ -35,9 +33,9 @@ chrome.tabs.onActivated.addListener(
 
 function getStateFromStorage(result){
   let state = {}
-  if(result.full === undefined){ 
+  if(result.data === undefined){ 
     state = {
-      full: DEFAULT_STATE
+      data: DEFAULT_STATE
     }
     return state 
   } else {
@@ -49,7 +47,7 @@ function getStateFromStorage(result){
 
 async function getFromStorageandSendToContent (stateAction) {
 
-  chrome.storage.sync.get(['full'], function(result) {
+  chrome.storage.sync.get(['data'], function(result) {
  
   const domen = stateAction.domen
   const area = stateAction.area
@@ -60,22 +58,21 @@ async function getFromStorageandSendToContent (stateAction) {
   }
   
   let state = getStateFromStorage(result)
-  state['full'][domen][area] = stateColor
+  state['data'][domen][area] = stateColor
 
   chrome.storage.sync.set(state, function() {
     console.log('Object is set ');
   });  
   
   chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-    chrome.tabs.sendMessage(tabs[0].id, {state: state.full});
+    chrome.tabs.sendMessage(tabs[0].id, {state: state.data});
   });  
   })
 }
 
 const resetAllStyle = () => {
-  console.log('resetAllStyle')
   const state = {
-    full: DEFAULT_STATE
+    data: DEFAULT_STATE
   }
   chrome.storage.sync.set(state, function() {
     console.log('Object is set ');
@@ -83,7 +80,6 @@ const resetAllStyle = () => {
 }
 
 chrome.runtime.onMessage.addListener( (request,sender,sendResponse) => {
-  console.log(request)
   if(request.isReset)
     resetAllStyle()
   else

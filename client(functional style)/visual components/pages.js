@@ -23,7 +23,7 @@ const deleteButtons = () => {
     if(buttons !== null) buttons.forEach((val)=> val.remove())
 }
 
-const rendorInit = () =>{
+const renderInit = () =>{
     const buttonYoutube = document.createElement('button')
     const buttonGoogle = document.createElement('button')
     const buttonReset = document.createElement('button')
@@ -55,7 +55,7 @@ const rendorInit = () =>{
     menu.append(buttonReset)
 }
 
-const rendorArea = () =>{
+const renderArea = () =>{
     const buttonText = document.createElement('button')
     const buttonLinks = document.createElement('button')
     const buttonBackgrounds = document.createElement('button')
@@ -87,7 +87,7 @@ const rendorArea = () =>{
     menu.append(buttonInput)
 }
 
-const rendorPallet = () =>{
+const renderPallet = () =>{
     const buttonFullColor = document.createElement('button')
     const buttonSomeColor = document.createElement('button')
 
@@ -114,7 +114,7 @@ const openBuyMeCoffe = (event) => {
     window.open('https://www.buymeacoffee.com/akimovivanj')
 }
 
-const rendorApply = () => {
+const renderApply = () => {
     let template = document.getElementById('my-pallet');
     let templateContent = template.content;
     document.body.appendChild(templateContent.cloneNode(true));
@@ -159,7 +159,7 @@ const rendorApply = () => {
     helper.classList.add('menu__helper')
     
     buttonReset.setAttribute('data-pallet','reset')
-    buttonApply.setAttribute('data-pallet','n')
+    buttonApply.setAttribute('data-pallet','applyColor')
     
     selectdButtonApply = buttonApply
     buttonResetRef = buttonReset

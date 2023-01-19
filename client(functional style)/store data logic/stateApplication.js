@@ -10,8 +10,8 @@ const changePallet = (state, element) => {
     return {...state, pallet: element.getAttribute("data-pallet")} 
 }
 
-const changeColor = (state,element) =>{
-    if(element.getAttribute("data-pallet") === 'n'){
+const changeColor = (state,element) => {
+    if(element.getAttribute("data-pallet") === 'applyColor'){
         openApplyColorAlert()
         return {...state, color:selectedColor}
     }
@@ -22,7 +22,6 @@ const changeColor = (state,element) =>{
 }
 
 let flagApply = false
-//closes for menu event - click
 const initStateAction = {
     domen:null,
     area:null,
@@ -43,12 +42,10 @@ let menuHandler = (stateAction = initStateAction) => ({index}) => (event) => {
         deleteLiElement()
         stateAction =  dict[index](stateAction, button)
         page = sesionBreadCrumbs(index+1)
-        flagApply = false 
     }
     else{
         stateAction =  dict[index](stateAction, button)
-        flagApply = true 
-        chrome.runtime.sendMessage({flagApply: flagApply, stateAction: stateAction})
+        chrome.runtime.sendMessage({stateAction: stateAction})
     }
 }
 let menuEvent = menuHandler()

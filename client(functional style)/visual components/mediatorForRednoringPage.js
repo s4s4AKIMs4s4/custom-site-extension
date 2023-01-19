@@ -8,23 +8,23 @@ const changeState = (page,index) => ({...page, index})
 
 const init = (it) =>{
     addLiElement(it,'domen')
-    rendorInit()
+    renderInit()
 }
 
 const functionality = (it) =>{
     addLiElement(it,'place')
-    rendorArea()
+    renderArea()
 }
 const pallet = (it) =>{
     addLiElement(it,'pallet')
-    rendorPallet()
+    renderPallet()
 }
 const apply = (it) =>{
     addLiElement(it, 'color')
-    rendorApply()
+    renderApply()
 }
 
-//methods for rendoring stage
+//methods for rendering stage
 
 const deleteMenu = () =>{
     let all = document.querySelectorAll('.menu2')
