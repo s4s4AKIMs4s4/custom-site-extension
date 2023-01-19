@@ -46,7 +46,7 @@ function getStateFromStorage(result){
 }
 
 async function getFromStorageandSendToContent (stateAction) {
-
+  console.log('opa')
   chrome.storage.sync.get(['data'], function(result) {
  
   const domen = stateAction.domen
@@ -71,6 +71,7 @@ async function getFromStorageandSendToContent (stateAction) {
 }
 
 const resetAllStyle = () => {
+  console.log('resetAllStyle')
   const state = {
     data: DEFAULT_STATE
   }
@@ -83,5 +84,5 @@ chrome.runtime.onMessage.addListener( (request,sender,sendResponse) => {
   if(request.isReset)
     resetAllStyle()
   else
-    getFromStorageandSendToContent(request.stateAction) 
+    getFromStorageandSendToContent(request.stateAction)
 })
