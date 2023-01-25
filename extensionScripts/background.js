@@ -71,9 +71,11 @@ async function getFromStorageandSendToContent (stateAction) {
 }
 
 const resetAllStyle = () => {
-  console.log('resetAllStyle')
   const state = {
-    data: DEFAULT_STATE
+    data: {
+      google:{},
+      youtube:{},
+    }
   }
   chrome.storage.sync.set(state, function() {
     console.log('Object is set ');

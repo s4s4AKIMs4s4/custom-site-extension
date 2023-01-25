@@ -4,26 +4,24 @@
     
     "description":"create a website style",
     
-    "version":"2.0",
+    "version":"4.1",
     
     "manifest_version": 3,
   
     "background":{
-        "service_worker":"background.js"
+        "service_worker":"extensionScripts/background.js"
     },
 
     "icons":{
-        "48":"image 3.png"
+        "48":"assets/smallLogo.png"
     },
 
     "content_scripts": [
         {
           "matches": ["http://*/*", "https://*/*"],
-          "js": ["contentscript.js"]
+          "js": ["extensionScripts/contentscript.js"]
         }
       ],
-
-
 
     "permissions":["storage", "activeTab"],
     "action":{

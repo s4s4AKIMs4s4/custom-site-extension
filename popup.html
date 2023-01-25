@@ -1,38 +1,36 @@
 <!DOCTYPE html>
-
 <html>
     <head>
-        <link rel="stylesheet" href="button.css">
-        <link rel="stylesheet" href="alert.css">
-        <link rel="stylesheet" href="reset.css">
-        <link rel="stylesheet" href="index.css">
+        <link rel="stylesheet" href="client(functional style)/styles/button.css">
+        <link rel="stylesheet" href="client(functional style)/styles/alert.css">
+        <link rel="stylesheet" href="client(functional style)/styles/reset.css">
+        <link rel="stylesheet" href="client(functional style)/styles/index.css">
         <script defer src="client(functional style)/utils/index.js"></script>
         <script defer src ="client(functional style)/visual components/mediatorForRednoringPage.js"></script>
         <script defer src ="client(functional style)/visual components/pages.js"></script>
         <script defer src="client(functional style)/index.js"></script>
         <script defer src ="client(functional style)/store data logic/stateApplication.js"></script>
-        <script  defer src="colorPicker.js"></script>
-        
+        <script  defer src="client(functional style)/pages/colorPicker.js"></script>
     </head>
     <body>
         <div id = 'reset-color-alert' class = 'warning-alert warning-alert_invisible'> 
             <span> Color reset successfully, please refresh the page </span>
             <div id = 'closeColorAlert' class = 'close-icon warning-alert__close-icon'>
-                <img width = "20px" height="20px" src = "close.svg" alt="My Happy SVG"/>
+                <img width = "20px" height="20px" src = "assets/close.svg" alt="My Happy SVG"/>
             </div> 
         </div>
 
         <div id = 'apply-color-alert' class = 'success-alert success-alert_invisible'> 
             <span> Color applied, if color not applied refresh page  </span>
             <div id = 'applyColorAlert' class = 'close-icon success-alert__close-icon'>
-                <img width = "20px" height="20px" src = "close.svg" alt="My Happy SVG"/>
+                <img width = "20px" height="20px" src = "assets/close.svg" alt="My Happy SVG"/>
             </div> 
         </div>
 
         <div id = 'reset-all-alert' class = 'warning-alert warning-alert_invisible'> 
             <span> All colors reset successfully, please refresh the page </span>
             <div id = 'closeAllColorAlert' class = 'close-icon warning-alert__close-icon'>
-                <img width = "20px" height="20px" src = "close.svg" alt="My Happy SVG"/>
+                <img width = "20px" height="20px" src = "assets/close.svg" alt="My Happy SVG"/>
             </div> 
         </div>
 
@@ -50,6 +48,5 @@
         <ul class="breadcrumbs"></ul>
         <div class = "menu"></div>
     </body> 
-
 </html>
 

@@ -5,11 +5,8 @@ class Picker {
       this.height = height;
       this.target.width = width;
       this.target.height = height;
-      //Get context 
       this.context = this.target.getContext("2d");
-      //Circle 
-      this.pickerCircle = { x: 10, y: 10, width: 7, height: 7 };
-      
+      this.pickerCircle = { x: 10, y: 10, width: 7, height: 7 };      
       this.listenForEvents();
     }
     
@@ -18,9 +15,8 @@ class Picker {
     }
     
     build() {
-      let gradient = this.context.createLinearGradient(0, 0, this.width, 0);
-  
-      //Color Stops
+      let gradient = this.context.createLinearGradient(0, 0, this.width, 0);  
+
       gradient.addColorStop(0, "rgb(255, 0, 0)");
       gradient.addColorStop(0.15, "rgb(255, 0, 255)");
       gradient.addColorStop(0.33, "rgb(0, 0, 255)");
@@ -28,12 +24,10 @@ class Picker {
       gradient.addColorStop(0.67, "rgb(0, 255, 0)");
       gradient.addColorStop(0.84, "rgb(255, 255, 0)");
       gradient.addColorStop(1, "rgb(255, 0, 0)");
-      //Fill it
       this.context.fillStyle = gradient;
       this.context.fillRect(0, 0, this.width, this.height);
       
-      //Apply black and white 
-          gradient = this.context.createLinearGradient(0, 0, 0,          this.height);
+      gradient = this.context.createLinearGradient(0, 0, 0,          this.height);
       gradient.addColorStop(0, "rgba(255, 255, 255, 1)");
       gradient.addColorStop(0.5, "rgba(255, 255, 255, 0)");
       gradient.addColorStop(0.5, "rgba(0, 0, 0, 0)");
@@ -41,7 +35,6 @@ class Picker {
       this.context.fillStyle = gradient;
       this.context.fillRect(0, 0, this.width, this.height);
       
-      //Circle 
       this.context.beginPath();
       this.context.arc(this.pickerCircle.x, this.pickerCircle.y, this.pickerCircle.width, 0, Math.PI * 2);
       this.context.strokeStyle = "black";
@@ -75,13 +68,10 @@ class Picker {
       const onMouseUp = () => {
         isMouseDown = false;
       }
-      
-      //Register 
+
       this.target.addEventListener("mousedown", onMouseDown);
       this.target.addEventListener("mousemove", onMouseMove);
       this.target.addEventListener("mousemove", () => this.onChangeCallback(this.getPickedColor()));
-  
-      
       document.addEventListener("mouseup", onMouseUp);
     }
     
@@ -89,17 +79,7 @@ class Picker {
       let imageData = this.context.getImageData(this.pickerCircle.x, this.pickerCircle.y, 1, 1);
       return { r: imageData.data[0], g: imageData.data[1], b: imageData.data[2] };
     }
-    
     onChange(callback) {
       this.onChangeCallback = callback;
     }
-
   }
-
-
-
-  
-
-
-
-  
